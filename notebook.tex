@@ -1,0 +1,1141 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Project draft}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{sys}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}
+        \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{pyplot} \PY{k}{as} \PY{n}{plt}
+        \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{animation}
+        \PY{c+c1}{\PYZsh{}from matplotlib.animation import FFMpegWriter}
+        \PY{k+kn}{from} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{animation} \PY{k}{import} \PY{n}{FuncAnimation}
+        
+        \PY{c+c1}{\PYZsh{} System setup:}
+        
+        \PY{c+c1}{\PYZsh{}In PIC, the time step and the grid size must be well chosen, }
+        \PY{c+c1}{\PYZsh{}so that the time and length scale phenomena of interest are properly resolved in the problem. }
+        \PY{c+c1}{\PYZsh{}In addition, time step and grid size affect the speed and accuracy of the code}
+        
+        
+        
+        \PY{n}{NAME} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{two\PYZhy{}stream\PYZus{}instability}\PY{l+s+s1}{\PYZsq{}}    \PY{c+c1}{\PYZsh{} name of setup configuration}
+        
+        \PY{n}{CELLS} \PY{o}{=} \PY{l+m+mi}{100}    \PY{c+c1}{\PYZsh{} number of cells}
+        \PY{c+c1}{\PYZsh{}CELLS = 200}
+        \PY{n}{NODES} \PY{o}{=} \PY{n}{CELLS} \PY{o}{+} \PY{l+m+mi}{1}    \PY{c+c1}{\PYZsh{} number of nodes. 1 dimension +1 (grid points+1)}
+        \PY{n}{SIZE} \PY{o}{=} \PY{l+m+mi}{20}    \PY{c+c1}{\PYZsh{} size of system (grid length)}
+        \PY{n}{STEPS} \PY{o}{=} \PY{l+m+mi}{2000}    \PY{c+c1}{\PYZsh{} number of time steps; how long to sim for}
+        \PY{c+c1}{\PYZsh{}STEPS = 4000}
+        \PY{c+c1}{\PYZsh{}q\PYZus{}over\PYZus{}me=\PYZhy{}1.0       \PYZsh{} electron charge:mass ratio}
+        
+        
+        \PY{c+c1}{\PYZsh{} Integration steps:}
+        \PY{n}{dX} \PY{o}{=} \PY{n}{SIZE}\PY{o}{/}\PY{n}{CELLS}   \PY{c+c1}{\PYZsh{} distance between nodes in space (grid length / grid points or nodes)}
+        \PY{n}{dT} \PY{o}{=} \PY{l+m+mf}{0.1}    \PY{c+c1}{\PYZsh{} timestep }
+        
+        \PY{c+c1}{\PYZsh{} Particles:}
+        \PY{n}{NPpc} \PY{o}{=} \PY{l+m+mi}{20}    \PY{c+c1}{\PYZsh{} number of particles per species per cell}
+        \PY{n}{NP} \PY{o}{=} \PY{n}{NPpc} \PY{o}{*} \PY{n}{CELLS}    \PY{c+c1}{\PYZsh{} number of particles of a species (total number of particles)}
+        
+        \PY{c+c1}{\PYZsh{} SOR: potential solver}
+        \PY{n}{ERROR} \PY{o}{=} \PY{l+m+mf}{1e\PYZhy{}5} \PY{c+c1}{\PYZsh{}Poisson solver tolerance to make sure the solution converges }
+        
+        \PY{c+c1}{\PYZsh{} Plasma Parameters and Pertubation: To see whether the perturbation amplitude affects instabilities}
+        \PY{n}{omegaP} \PY{o}{=} \PY{l+m+mi}{1}    \PY{c+c1}{\PYZsh{} normalized plasma frequency }
+        \PY{n}{eps0} \PY{o}{=} \PY{l+m+mi}{1}     \PY{c+c1}{\PYZsh{} normalized vacuum permittivity}
+        
+        \PY{n}{MODE} \PY{o}{=} \PY{l+m+mi}{1}    \PY{c+c1}{\PYZsh{} could use different pertubation modes}
+        \PY{c+c1}{\PYZsh{}AMPLITUDE = 1e\PYZhy{}1    \PYZsh{} amplitude of plasma pertubation (Perturbation magnitude (1e\PYZhy{}4)) \PYZlt{}\PYZlt{} first attempt}
+        \PY{n}{AMPLITUDE} \PY{o}{=} \PY{l+m+mf}{1e\PYZhy{}3} \PY{c+c1}{\PYZsh{}lower amplitude}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+        \PY{c+c1}{\PYZsh{}Grid and Particle Stream Generation Class and Functions: }
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+        
+        
+        
+        \PY{c+c1}{\PYZsh{}From particle pusher/mover: where we have to generate particles with position, velocity ..etc }
+        \PY{c+c1}{\PYZsh{}in order to calculate the charge density on nodes}
+        
+        \PY{c+c1}{\PYZsh{}PIC: Particle methods simulate a plasma system by following a number of particle trajectories}
+        
+        \PY{c+c1}{\PYZsh{}Essential physics can be captured with a much smaller number of particles than that in a real plasma:}
+        \PY{c+c1}{\PYZsh{}a) For 10\PYZca{}3 \PYZti{} 10\PYZca{}11 particles: The charge/mass ratio and charge density remain the same. }
+        
+        
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        
+        \PY{c+c1}{\PYZsh{} Particle class }
+        
+        \PY{k}{class} \PY{n+nc}{Particle}\PY{p}{:}
+            
+            \PY{c+c1}{\PYZsh{} Initialize particle object}
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{position}\PY{p}{,} \PY{n}{velocity}\PY{p}{,} \PY{n}{frequency}\PY{p}{,} \PY{n}{charge\PYZus{}over\PYZus{}mass}\PY{p}{,} \PY{n}{move\PYZus{}boolean}\PY{p}{,} \PY{n}{num\PYZus{}particles}\PY{p}{)}\PY{p}{:}
+                
+                \PY{c+c1}{\PYZsh{} particle methodes}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{x} \PY{o}{=} \PY{n}{position}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{v} \PY{o}{=} \PY{n}{velocity}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{omega} \PY{o}{=} \PY{n}{frequency}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{q} \PY{o}{=} \PY{n}{omegaP}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{*} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{charge\PYZus{}over\PYZus{}mass}\PY{p}{)} \PY{o}{*} \PY{n}{eps0} \PY{o}{*} \PY{p}{(}\PY{n}{SIZE}\PY{o}{/}\PY{n}{num\PYZus{}particles}\PY{p}{)} \PY{c+c1}{\PYZsh{}computational particle charge}
+                \PY{c+c1}{\PYZsh{}solving for q from the equation of plasma frequency omegap\PYZca{}2 (shown in my notes) in SI units: rad/s}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{qoverm} \PY{o}{=} \PY{n}{charge\PYZus{}over\PYZus{}mass} 
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{move} \PY{o}{=} \PY{n}{move\PYZus{}boolean} \PY{c+c1}{\PYZsh{} background charge given by background (not moving) ions}
+            
+            \PY{c+c1}{\PYZsh{} Two stream setup:}
+            \PY{k}{def} \PY{n+nf}{two\PYZus{}stream\PYZus{}instability} \PY{p}{(}\PY{p}{)}\PY{p}{:}
+                
+                \PY{c+c1}{\PYZsh{} array of particle objects in streams}
+                \PY{n}{STREAM} \PY{o}{=} \PY{p}{[}\PY{p}{]} \PY{c+c1}{\PYZsh{}an empty list}
+                
+                \PY{c+c1}{\PYZsh{} separation/ particle spacing}
+                \PY{n}{separation} \PY{o}{=} \PY{l+m+mf}{1.0} \PY{o}{*} \PY{n}{SIZE}\PY{o}{/}\PY{p}{(}\PY{n}{NP}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)} 
+                
+                \PY{c+c1}{\PYZsh{} for loop through all flucuating particles:}
+                       
+            \PY{c+c1}{\PYZsh{}Plasma oscillations: A longitudinal plasma wave manifests itself as a disturbance in the electron density:}
+           \PY{c+c1}{\PYZsh{} ne = n0 + n1(x,t). }
+        \PY{c+c1}{\PYZsh{}We can excite such a wave numerically by displacing the initial positions of the particles.}
+        
+        
+                \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{NP}\PY{o}{/}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}Integer Division): Quotient when a is divided by b, rounded to the next smallest whole number}
+                    
+                    \PY{c+c1}{\PYZsh{} plasma flucuations are modelled as a background value (usually constant) plus a small pertubation}
+                    \PY{c+c1}{\PYZsh{} plasma background}
+                    \PY{n}{x\PYZus{}background} \PY{o}{=} \PY{p}{(}\PY{n}{i} \PY{o}{+} \PY{l+m+mf}{0.5}\PY{p}{)} \PY{o}{*} \PY{n}{separation} \PY{c+c1}{\PYZsh{} Python ndarrays ( N\PYZhy{}dimensional array) start at index 0}
+         \PY{c+c1}{\PYZsh{}\PYZgt{}\PYZgt{}\PYZgt{} Particles are loaded offset from a uniformly distributed center:  }
+        
+                    \PY{c+c1}{\PYZsh{} plasma pertubation}
+                    \PY{n}{angle\PYZus{}theta} \PY{o}{=} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{*} \PY{n}{MODE} \PY{o}{*} \PY{n}{x\PYZus{}background} \PY{o}{/} \PY{n}{SIZE}
+                    \PY{n}{plasma\PYZus{}pert} \PY{o}{=} \PY{n}{AMPLITUDE} \PY{o}{*} \PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{angle\PYZus{}theta}\PY{p}{)} \PY{c+c1}{\PYZsh{}Include small perturbation}
+                    
+                    \PY{c+c1}{\PYZsh{} overall plasma flucuation}
+                    \PY{n}{x\PYZus{}1} \PY{o}{=} \PY{n}{x\PYZus{}background} \PY{o}{+} \PY{n}{plasma\PYZus{}pert}
+                    \PY{n}{x\PYZus{}2} \PY{o}{=} \PY{n}{x\PYZus{}background} \PY{o}{\PYZhy{}} \PY{n}{plasma\PYZus{}pert}
+                
+                    \PY{c+c1}{\PYZsh{} to cover all space and visit all nodes we need periodic boundary conditions:}
+                    \PY{c+c1}{\PYZsh{} periodic boundaries: }
+                        \PY{c+c1}{\PYZsh{}plasma\PYZus{}start = 0.}
+                        \PY{c+c1}{\PYZsh{}plasma\PYZus{}end = grid\PYZus{}length}
+                        \PY{c+c1}{\PYZsh{}wall\PYZus{}left = 0. (plasma start)   \PYZsh{}wall left = dx/2}
+                        \PY{c+c1}{\PYZsh{}wall\PYZus{}right = grid\PYZus{}length}
+                        
+            \PY{c+c1}{\PYZsh{} loop over all particles to see if any have}
+            \PY{c+c1}{\PYZsh{} left simulation region: if so, we put them back again}
+            \PY{c+c1}{\PYZsh{} according to the switch \PYZsq{}particle\PYZsq{}}
+                    \PY{k}{if} \PY{n}{x\PYZus{}1} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                        \PY{n}{x\PYZus{}1} \PY{o}{+}\PY{o}{=} \PY{n}{SIZE}
+                    \PY{k}{if} \PY{n}{x\PYZus{}2} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                        \PY{n}{x\PYZus{}2} \PY{o}{+}\PY{o}{=} \PY{n}{SIZE}
+                    \PY{k}{if} \PY{n}{x\PYZus{}1} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{SIZE}\PY{p}{:}
+                        \PY{n}{x\PYZus{}1} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{n}{SIZE}
+                    \PY{k}{if} \PY{n}{x\PYZus{}2} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{SIZE}\PY{p}{:}
+                        \PY{n}{x\PYZus{}2} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{n}{SIZE}
+        \PY{c+c1}{\PYZsh{}The B.C here are periodic: particles are transported to the opposite side of the domain}
+                       
+                    \PY{c+c1}{\PYZsh{} add flucuating/moving particles to stream}
+                    \PY{n}{STREAM}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{Particle}\PY{p}{(}\PY{n}{x\PYZus{}1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{k+kc}{True}\PY{p}{,} \PY{n}{NP}\PY{p}{)}\PY{p}{)}
+                    \PY{n}{STREAM}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{Particle}\PY{p}{(}\PY{n}{x\PYZus{}2}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{k+kc}{True}\PY{p}{,} \PY{n}{NP}\PY{p}{)}\PY{p}{)}
+                    
+        \PY{c+c1}{\PYZsh{}Drift velocity of species 1 (1)}
+        \PY{c+c1}{\PYZsh{}Drift velocity of species 2 (\PYZhy{}1) \PYZlt{}\PYZlt{} opp direction}
+                    
+                \PY{c+c1}{\PYZsh{} for loop for all background particles: background meaning (not moving) ions/particles}
+                \PY{n}{separation} \PY{o}{=} \PY{n}{SIZE}\PY{o}{/}\PY{n}{NP} 
+        
+                \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{NP}\PY{p}{)}\PY{p}{:}
+                    
+                    \PY{c+c1}{\PYZsh{} plasma background}
+                    \PY{n}{x\PYZus{}background} \PY{o}{=} \PY{p}{(}\PY{n}{i} \PY{o}{+} \PY{l+m+mf}{0.5}\PY{p}{)} \PY{o}{*} \PY{n}{separation}
+                    
+                    \PY{c+c1}{\PYZsh{} add stationary particles to stream}
+                    \PY{n}{STREAM}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{Particle}\PY{p}{(}\PY{n}{x\PYZus{}background}\PY{p}{,} \PY{l+m+mf}{0.0}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+m+mf}{1.0}\PY{p}{,} \PY{k+kc}{False}\PY{p}{,} \PY{n}{NP}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{}False for the \PYZdq{}move\PYZus{}boolean\PYZdq{}}
+                
+                \PY{c+c1}{\PYZsh{} return stream of objects}
+                \PY{k}{return} \PY{n}{STREAM}
+            
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} }
+        \PY{c+c1}{\PYZsh{}PIC Main Loop Functions:}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+        
+        \PY{c+c1}{\PYZsh{} Functions for four step PIC process using SOR. We will need six functions.}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} 1) Density weighting/averaging on nodes of grid: }
+        \PY{c+c1}{\PYZsh{}particle positions are scattered to the grid}
+        
+        \PY{c+c1}{\PYZsh{} Function takes in array of particles [particles]. INPUT = [particles]}
+        \PY{c+c1}{\PYZsh{} Function outputs density on nodes in grid. OUTPUT = rho }
+        
+        
+        \PY{k}{def} \PY{n+nf}{density}\PY{p}{(}\PY{n}{particles}\PY{p}{)}\PY{p}{:}
+            
+            \PY{n}{rho} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{NODES}\PY{p}{)}        \PY{c+c1}{\PYZsh{} creates array rho with NODES number of values, each equal to 0.0 }
+           
+            \PY{n}{length\PYZus{}particles} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{particles}\PY{p}{)}
+             \PY{c+c1}{\PYZsh{} map charges onto grid:}
+            \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{length\PYZus{}particles}\PY{p}{)}\PY{p}{:}
+                
+                \PY{c+c1}{\PYZsh{} setup particle position, step, and distance values that are used for indexing}
+                
+                \PY{n}{position} \PY{o}{=} \PY{p}{(}\PY{n}{particles}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{.}\PY{n}{x} \PY{o}{/} \PY{n}{dX}\PY{p}{)} \PY{c+c1}{\PYZsh{}position here define the position of a particle in terms of cells (how many cells away is this particle)}
+                \PY{c+c1}{\PYZsh{}dX: distance between nodes in space, size of one mesh}
+                
+                \PY{c+c1}{\PYZsh{}particles/dX:  charge weighting factor }
+                \PY{n}{step} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{floor}\PY{p}{(}\PY{n}{particles}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{.}\PY{n}{x} \PY{o}{/} \PY{n}{dX}\PY{p}{)} \PY{c+c1}{\PYZsh{}np.floor: rounds down to closest int cause position most likely a non int}
+                
+                \PY{c+c1}{\PYZsh{}step is j along y}
+                \PY{n}{distance} \PY{o}{=} \PY{n}{position} \PY{o}{\PYZhy{}} \PY{n}{step} \PY{c+c1}{\PYZsh{}only contribution comes from the adjacent points so more than cell away the distance is same}
+                \PY{c+c1}{\PYZsh{}original distance minus the nearst lower node: takes position in cells }
+                \PY{c+c1}{\PYZsh{} setup current and next index values }
+                \PY{n}{current\PYZus{}index} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{step}\PY{p}{)}
+                \PY{n}{next\PYZus{}index} \PY{o}{=} \PY{p}{(}\PY{n}{current\PYZus{}index} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{} add current and next rho charge (q) values: compute rho at each node:}
+                \PY{n}{rho}\PY{p}{[}\PY{n}{current\PYZus{}index}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{n}{particles}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{.}\PY{n}{q} \PY{o}{*} \PY{p}{(}\PY{l+m+mf}{1.0} \PY{o}{\PYZhy{}} \PY{n}{distance}\PY{p}{)} \PY{c+c1}{\PYZsh{}since everything is normalized to dX and in units of cells }
+                \PY{c+c1}{\PYZsh{}we say the cell is 1 therefore 1.0 \PYZhy{} distance is distance }
+                \PY{n}{rho}\PY{p}{[}\PY{n}{next\PYZus{}index}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{n}{particles}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{.}\PY{n}{q} \PY{o}{*} \PY{n}{distance}
+        
+                
+            \PY{c+c1}{\PYZsh{} to get right values in right places for repeating iterations: }
+            \PY{c+c1}{\PYZsh{} periodic boundaries: Because last and first nodes are the same  }
+            \PY{n}{rho}\PY{p}{[}\PY{n}{NODES} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{+}\PY{o}{=} \PY{n}{rho}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{rho}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=} \PY{n}{rho}\PY{p}{[}\PY{n}{NODES} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]}
+        
+            \PY{c+c1}{\PYZsh{} create numpy array of rho values}
+            \PY{n}{rho} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{rho}\PY{p}{)}
+        
+            \PY{n}{rho} \PY{o}{/}\PY{o}{=} \PY{n}{dX}    \PY{c+c1}{\PYZsh{}rho = rho/dX: divide by cell/mesh size to get charge density}
+            \PY{k}{return} \PY{n}{rho}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} 2) Successive Over\PYZhy{}Relaxation Method to solve Poisson Equation.}
+        \PY{c+c1}{\PYZsh{}the coefficient must be bounded so 1\PYZlt{} w \PYZlt{}2 and usually 1.5 is a good starting }
+        
+        \PY{c+c1}{\PYZsh{} Function takes in density (rho) array. INPUT = rho }
+        \PY{c+c1}{\PYZsh{} Function outputs electric potential (phi) array. OUTPUT = phi}
+        \PY{k}{def} \PY{n+nf}{SOR}\PY{p}{(}\PY{n}{rho}\PY{p}{)}\PY{p}{:}
+            
+        \PY{c+c1}{\PYZsh{}To optimize the solution the over\PYZhy{}relaxation parameter that converges the fastest when it is set to:}
+            \PY{n}{w} \PY{o}{=} \PY{l+m+mf}{2.0} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{pi} \PY{o}{/} \PY{n}{NODES}\PY{p}{)} \PY{c+c1}{\PYZsh{}relaxation constant w}
+            
+            
+            \PY{c+c1}{\PYZsh{} create initial starting phi values}
+            \PY{n}{phi} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{NODES}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{} create matrix b (see SOR description above) from density array rho}
+            \PY{n}{matrix\PYZus{}b} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{rho}\PY{p}{)} \PY{o}{*} \PY{n}{dX}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{/} \PY{n}{eps0} \PY{c+c1}{\PYZsh{}np.copy(): Return an array copy of the given object}
+        \PY{c+c1}{\PYZsh{}matrix b = charge density }
+        \PY{c+c1}{\PYZsh{}linear charge density: multiplied by the area of one box (cell) cause charge density is usually volume}
+        \PY{c+c1}{\PYZsh{}}
+        
+        
+            \PY{c+c1}{\PYZsh{} SOR solver}
+            \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{10000}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}a max 10,000 iterations were used}
+                
+                \PY{k}{if} \PY{n}{k} \PY{o}{==} \PY{l+m+mi}{9999}\PY{p}{:}    \PY{c+c1}{\PYZsh{} if loop  gets to k = 9999 without finding acceptable solution (low enough error) then we have problem. }
+                                 \PY{c+c1}{\PYZsh{} if k = 9999 then terms are not converging and SOR method fails}
+                    \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{SOR is likely to diverge}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+                \PY{n}{phi\PYZus{}new} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{phi}\PY{p}{)}
+                
+                \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{NODES} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}nodes\PYZhy{}1 = cells }
+                    
+                    \PY{c+c1}{\PYZsh{} create next and previous indices }
+                    \PY{n}{next\PYZus{}index} \PY{o}{=} \PY{p}{(}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{k}{if} \PY{p}{(}\PY{n}{i} \PY{o}{\PYZlt{}} \PY{n}{NODES} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{p}{)} \PY{k}{else} \PY{l+m+mi}{0}
+                    \PY{n}{previous\PYZus{}index} \PY{o}{=} \PY{p}{(}\PY{n}{i} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{k}{if} \PY{p}{(}\PY{n}{i} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{)} \PY{k}{else} \PY{p}{(}\PY{n}{NODES} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{p}{)}
+                    
+                    \PY{c+c1}{\PYZsh{} SOR algorithm. See eqs in SOR section }
+                    \PY{n}{phi\PYZus{}new}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{w}\PY{p}{)} \PY{o}{*} \PY{n}{phi}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{+} \PY{p}{(}\PY{n}{w} \PY{o}{/} \PY{o}{\PYZhy{}}\PY{l+m+mf}{2.0}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{matrix\PYZus{}b}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{phi\PYZus{}new}\PY{p}{[}\PY{n}{previous\PYZus{}index}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{phi}\PY{p}{[}\PY{p}{[}\PY{n}{next\PYZus{}index}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                \PY{c+c1}{\PYZsh{}\PYZhy{}2 is the constant aii in the Laplacian matrix}
+        \PY{c+c1}{\PYZsh{} checking convergence}
+                \PY{k}{if} \PY{n}{k} \PY{o}{\PYZpc{}} \PY{l+m+mi}{25} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                    \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{abs}\PY{p}{(}\PY{n}{phi\PYZus{}new} \PY{o}{\PYZhy{}} \PY{n}{phi}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{ERROR}\PY{p}{:}
+                        \PY{n}{phi} \PY{o}{=} \PY{n}{phi\PYZus{}new}
+                        \PY{k}{break}
+                \PY{n}{phi} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{n}{phi\PYZus{}new}\PY{p}{)}
+        
+            \PY{n}{phi}\PY{p}{[}\PY{n}{NODES} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{phi}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{c+c1}{\PYZsh{} move on to next}
+            
+            \PY{k}{return} \PY{n}{phi}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} 3) Calculating the electric field from the potential on nodes in grid}
+        
+        \PY{c+c1}{\PYZsh{}   Function takes in array of the potential on nodes. INPUT = phi}
+        \PY{c+c1}{\PYZsh{}   Function outputs in array of electric fields on the nodes. OUTPUT = electric field on nodes array}
+        
+        \PY{k}{def} \PY{n+nf}{field\PYZus{}on\PYZus{}nodes} \PY{p}{(}\PY{n}{phi}\PY{p}{)}\PY{p}{:}
+            
+            \PY{c+c1}{\PYZsh{} initial electric field values}
+            \PY{n}{electric\PYZus{}field} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{NODES}\PY{p}{)}
+            
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{NODES}\PY{p}{)}\PY{p}{:}
+                \PY{n}{next\PYZus{}index} \PY{o}{=} \PY{p}{(}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{k}{if} \PY{p}{(}\PY{n}{i} \PY{o}{\PYZlt{}} \PY{n}{NODES} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{k}{else} \PY{l+m+mi}{0} \PY{c+c1}{\PYZsh{}move to next index only if the next one is less than the last }
+                \PY{n}{previous\PYZus{}index} \PY{o}{=} \PY{p}{(}\PY{n}{i} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)} \PY{k}{if} \PY{p}{(}\PY{n}{i} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{)} \PY{k}{else} \PY{p}{(}\PY{n}{NODES} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{)}
+        
+                \PY{n}{electric\PYZus{}field}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{phi}\PY{p}{[}\PY{n}{previous\PYZus{}index}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{phi}\PY{p}{[}\PY{n}{next\PYZus{}index}\PY{p}{]}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{dX}\PY{p}{)} 
+                \PY{c+c1}{\PYZsh{}divide by cell/mesh size to get electric field}
+        
+            \PY{k}{return} \PY{n}{electric\PYZus{}field}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} 4) Assign the electric field values from nodes to particles. Interpolate field from nodes to particles.}
+        
+        \PY{c+c1}{\PYZsh{} Function takes in array of electric field on nodes and array of particles.}
+        \PY{c+c1}{\PYZsh{}INPUT = array of electic field on nodes, and array of particles}
+        \PY{c+c1}{\PYZsh{} Function outputs array of electric field on particles. }
+        
+        \PY{k}{def} \PY{n+nf}{field\PYZus{}on\PYZus{}particles} \PY{p}{(}\PY{n}{field}\PY{p}{,} \PY{n}{particles}\PY{p}{)}\PY{p}{:}
+            
+            \PY{n}{length\PYZus{}particles} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{particles}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} create initial electric field array}
+            \PY{n}{electric\PYZus{}field} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{length\PYZus{}particles}\PY{p}{)}
+            
+            \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{length\PYZus{}particles}\PY{p}{)}\PY{p}{:}
+                
+                \PY{k}{if} \PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{move}\PY{p}{:} \PY{c+c1}{\PYZsh{}self.move = move\PYZus{}boolean}
+                    
+                    \PY{n}{position} \PY{o}{=} \PY{p}{(}\PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{x} \PY{o}{/}\PY{o}{/} \PY{n}{dX}\PY{p}{)} \PY{c+c1}{\PYZsh{}dX: distance between nodes in space (a mesh space)}
+                    \PY{c+c1}{\PYZsh{}self.x = position }
+                    \PY{n}{step} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{floor}\PY{p}{(}\PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{x} \PY{o}{/}\PY{o}{/} \PY{n}{dX}\PY{p}{)} \PY{c+c1}{\PYZsh{}floor rounds down floats to int}
+        
+                    \PY{n}{next\PYZus{}index} \PY{o}{=} \PY{p}{(}\PY{n}{step} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{k}{if} \PY{p}{(}\PY{n}{step} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{NODES} \PY{k}{else} \PY{l+m+mi}{0}
+        
+                    \PY{n}{electric\PYZus{}field}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{next\PYZus{}index} \PY{o}{\PYZhy{}} \PY{n}{position}\PY{p}{)} \PY{o}{*} \PY{n}{field}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n}{step}\PY{p}{)}\PY{p}{]} \PY{o}{+} \PY{p}{(}\PY{n}{position} \PY{o}{\PYZhy{}} \PY{n}{step}\PY{p}{)} \PY{o}{*} \PY{n}{field}\PY{p}{[}\PY{n+nb}{int}\PY{p}{(}\PY{n}{next\PYZus{}index}\PY{p}{)}\PY{p}{]}
+                    
+            \PY{k}{return} \PY{n}{electric\PYZus{}field}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} 5) Equations of motion integration}
+        
+        \PY{c+c1}{\PYZsh{}   Function takes in electric field and particles array. INPUT = field and array array}
+        \PY{c+c1}{\PYZsh{}   Function outputs new particles velocities and positions. OUTPUT = particle velocities and positions.}
+        
+        \PY{k}{def} \PY{n+nf}{move\PYZus{}particles}\PY{p}{(}\PY{n}{field}\PY{p}{,} \PY{n}{particles}\PY{p}{)}\PY{p}{:}
+            
+            \PY{n}{length\PYZus{}particles} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{particles}\PY{p}{)}
+            
+            \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{length\PYZus{}particles}\PY{p}{)}\PY{p}{:}
+                \PY{k}{if} \PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{move}\PY{p}{:}
+        \PY{c+c1}{\PYZsh{}the particle push is given by these two equations (updating new velocities and positions): The leap\PYZhy{}frog     }
+                    \PY{c+c1}{\PYZsh{} update new velocity}
+                    \PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{v} \PY{o}{+}\PY{o}{=} \PY{n}{field}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{*} \PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{qoverm} \PY{o}{*} \PY{n}{dT} 
+        
+                    \PY{c+c1}{\PYZsh{} updating position}
+                    \PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{x} \PY{o}{+}\PY{o}{=} \PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{v} \PY{o}{*} \PY{n}{dT} 
+        
+                    \PY{c+c1}{\PYZsh{} boundardy conditions}
+                    \PY{k}{while} \PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{x} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                        \PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{x} \PY{o}{+}\PY{o}{=} \PY{n}{SIZE}
+                    \PY{k}{while} \PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{x} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{SIZE}\PY{p}{:}
+                        \PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{x} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{n}{SIZE}
+                        
+            \PY{k}{return} \PY{n}{particles}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} 6) Function for rewinding velocity by dT/2 forward or backward}
+        
+        \PY{c+c1}{\PYZsh{}   Function takes in rewind direction, field, and particles arrays. INPUT = rewind direction, field, particles}
+        \PY{c+c1}{\PYZsh{}       direction forward: +1}
+        \PY{c+c1}{\PYZsh{}       direction backward: \PYZhy{}1}
+        \PY{c+c1}{\PYZsh{}   Function outputs new particle velocities. OUTPUT = new particles velocties}
+        
+        \PY{k}{def} \PY{n+nf}{rewind}\PY{p}{(}\PY{n}{direction}\PY{p}{,} \PY{n}{field}\PY{p}{,} \PY{n}{particles}\PY{p}{)}\PY{p}{:}
+            
+            \PY{n}{length\PYZus{}particles} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{particles}\PY{p}{)}
+            
+            \PY{k}{for} \PY{n}{k} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{length\PYZus{}particles}\PY{p}{)}\PY{p}{:}
+                
+                \PY{c+c1}{\PYZsh{} updating new velocity}
+                \PY{k}{if} \PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{move}\PY{p}{:} 
+                    
+                    \PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{v} \PY{o}{+}\PY{o}{=} \PY{n}{direction} \PY{o}{*} \PY{n}{field}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{*} \PY{n}{particles}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{o}{.}\PY{n}{qoverm} \PY{o}{*} \PY{n}{dT} \PY{o}{/} \PY{l+m+mf}{2.0} 
+                    
+            \PY{k}{return} \PY{n}{particles}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+        
+        \PY{c+c1}{\PYZsh{}Progress Bar}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+        
+        \PY{c+c1}{\PYZsh{}Print iterations progress}
+        
+        \PY{k+kn}{import} \PY{n+nn}{sys}
+        
+        \PY{k}{def} \PY{n+nf}{printProgress} \PY{p}{(}\PY{n}{iteration}\PY{p}{,} \PY{n}{total}\PY{p}{,} \PY{n}{prefix} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{suffix} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{decimals} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{barLength} \PY{o}{=} \PY{l+m+mi}{100}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{    Call in a loop to create terminal progress bar}
+        \PY{l+s+sd}{    @params:}
+        \PY{l+s+sd}{        iteration   \PYZhy{} Required  : current iteration (Int)}
+        \PY{l+s+sd}{        total       \PYZhy{} Required  : total iterations (Int)}
+        \PY{l+s+sd}{        prefix      \PYZhy{} Optional  : prefix string (Str)}
+        \PY{l+s+sd}{        suffix      \PYZhy{} Optional  : suffix string (Str)}
+        \PY{l+s+sd}{        decimals    \PYZhy{} Optional  : number of decimals in percent complete (Int)}
+        \PY{l+s+sd}{        barLength   \PYZhy{} Optional  : character length of bar (Int)}
+        \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+            \PY{n}{filledLength}    \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{round}\PY{p}{(}\PY{n}{barLength} \PY{o}{*} \PY{n}{iteration} \PY{o}{/} \PY{n+nb}{float}\PY{p}{(}\PY{n}{total}\PY{p}{)}\PY{p}{)}\PY{p}{)} 
+            \PY{n}{percents}        \PY{o}{=} \PY{n+nb}{round}\PY{p}{(}\PY{l+m+mf}{100.00} \PY{o}{*} \PY{p}{(}\PY{n}{iteration} \PY{o}{/} \PY{n+nb}{float}\PY{p}{(}\PY{n}{total}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{decimals}\PY{p}{)}
+            \PY{n}{bar}             \PY{o}{=} \PY{l+s+sa}{u}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}u2588}\PY{l+s+s1}{\PYZsq{}} \PY{o}{*} \PY{n}{filledLength} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{*} \PY{p}{(}\PY{n}{barLength} \PY{o}{\PYZhy{}} \PY{n}{filledLength}\PY{p}{)} 
+            \PY{c+c1}{\PYZsh{}u2588: Unicode Character \PYZsq{}FULL BLOCK\PYZsq{} }
+            \PY{n}{sys}\PY{o}{.}\PY{n}{stdout}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}r}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ |}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{| }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{ }\PY{l+s+si}{\PYZpc{}s}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{prefix}\PY{p}{,} \PY{n}{bar}\PY{p}{,} \PY{n}{percents}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{suffix}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+            \PY{c+c1}{\PYZsh{}\PYZpc{}s: It is a string formatting syntax ( Python borrows from C).}
+            \PY{n}{sys}\PY{o}{.}\PY{n}{stdout}\PY{o}{.}\PY{n}{flush}\PY{p}{(}\PY{p}{)}
+            \PY{k}{if} \PY{n}{iteration} \PY{o}{==} \PY{n}{total}\PY{p}{:}
+                \PY{n}{sys}\PY{o}{.}\PY{n}{stdout}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{}}
+                \PY{n}{sys}\PY{o}{.}\PY{n}{stdout}\PY{o}{.}\PY{n}{flush}\PY{p}{(}\PY{p}{)}
+                
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+        
+        \PY{c+c1}{\PYZsh{}PIC Function Calls}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+        
+        \PY{c+c1}{\PYZsh{} Main}
+        
+        \PY{c+c1}{\PYZsh{} Function to check file NAME }
+        \PY{c+c1}{\PYZsh{} if file parameters exist, generate initial particles}
+        
+        \PY{k}{if} \PY{n}{NAME} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{two\PYZhy{}stream\PYZus{}instability}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+            
+            \PY{c+c1}{\PYZsh{} calling Particle class to generate initial particles}
+            \PY{n}{particles} \PY{o}{=} \PY{n}{Particle}\PY{o}{.}\PY{n}{two\PYZus{}stream\PYZus{}instability}\PY{p}{(}\PY{p}{)}
+            
+        \PY{k}{else}\PY{p}{:}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Invalid two\PYZhy{}stream\PYZus{}instability, no parameters exist for input two\PYZhy{}stream\PYZus{}instability given}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            
+        
+        
+        \PY{c+c1}{\PYZsh{} PROGRESS BAR}
+        \PY{n}{stp} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{printProgress}\PY{p}{(}\PY{n}{stp}\PY{p}{,} \PY{n}{STEPS}\PY{p}{,} \PY{n}{prefix} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Progress:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{suffix} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Complete}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{barLength} \PY{o}{=} \PY{l+m+mi}{50}\PY{p}{)}
+        
+        
+        \PY{c+c1}{\PYZsh{} core PIC loop}
+        \PY{k}{for} \PY{n}{step} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{STEPS}\PY{p}{)}\PY{p}{:}
+            
+            \PY{c+c1}{\PYZsh{} PIC Steps}
+            
+            \PY{c+c1}{\PYZsh{} 1) Assign densities}
+            \PY{n}{rho} \PY{o}{=} \PY{n}{density}\PY{p}{(}\PY{n}{particles}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} 2) SOR method to solve Poisson and calculate phi values}
+            \PY{n}{phi} \PY{o}{=} \PY{n}{SOR}\PY{p}{(}\PY{n}{rho}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} 3) Assign the electric field values from nodes to particles}
+            \PY{n}{electric\PYZus{}field\PYZus{}nodes} \PY{o}{=} \PY{n}{field\PYZus{}on\PYZus{}nodes}\PY{p}{(}\PY{n}{phi}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} 4) Calculate electric field on particles }
+            \PY{n}{electric\PYZus{}field\PYZus{}particles} \PY{o}{=} \PY{n}{field\PYZus{}on\PYZus{}particles}\PY{p}{(}\PY{n}{electric\PYZus{}field\PYZus{}nodes}\PY{p}{,} \PY{n}{particles}\PY{p}{)}
+        
+            \PY{k}{if} \PY{n}{step} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{n}{particles} \PY{o}{=} \PY{n}{rewind}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{electric\PYZus{}field\PYZus{}particles}\PY{p}{,} \PY{n}{particles}\PY{p}{)}
+        
+            \PY{n}{particles} \PY{o}{=} \PY{n}{move\PYZus{}particles}\PY{p}{(}\PY{n}{electric\PYZus{}field\PYZus{}particles}\PY{p}{,} \PY{n}{particles}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} WRITE TO FILES}
+            
+            \PY{k}{if} \PY{n}{step} \PY{o}{\PYZpc{}} \PY{l+m+mi}{1} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+            
+                \PY{c+c1}{\PYZsh{} print \PYZdq{}step: \PYZdq{}, step}
+            
+                \PY{n}{output} \PY{o}{=} \PY{n+nb}{open}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/Users/lujainali/Documents/GitHub/Two\PYZus{}Stream\PYZus{}Instability/4000Data/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{step\PYZus{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{step}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.dat}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{w}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            
+                \PY{n}{newparts} \PY{o}{=} \PY{n}{rewind}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{electric\PYZus{}field\PYZus{}particles}\PY{p}{,} \PY{n}{particles}\PY{p}{)}
+                \PY{n}{length\PYZus{}particles} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{particles}\PY{p}{)}
+            
+                \PY{c+c1}{\PYZsh{} write to write}
+                \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{length\PYZus{}particles}\PY{p}{)}\PY{p}{:}
+                    \PY{k}{if} \PY{n}{newparts}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{move}\PY{p}{:}
+                        \PY{n}{output}\PY{o}{.}\PY{n}{write}\PY{p}{(}\PY{n+nb}{str}\PY{p}{(}\PY{n}{newparts}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{x}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{newparts}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{v}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{output}\PY{o}{.}\PY{n}{close}\PY{p}{(}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{} PROGRESS BAR}
+            \PY{n}{stp} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+            \PY{n}{printProgress}\PY{p}{(}\PY{n}{stp}\PY{p}{,} \PY{n}{STEPS}\PY{p}{,} \PY{n}{prefix} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Progress:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{suffix} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Complete}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{barLength} \PY{o}{=} \PY{l+m+mi}{50}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+         
+         \PY{c+c1}{\PYZsh{}Animation }
+         
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+         \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+         
+         
+         \PY{c+c1}{\PYZsh{} import animation libraries }
+         \PY{k+kn}{import} \PY{n+nn}{matplotlib}
+         \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{pyplot} \PY{k}{as} \PY{n}{plt}
+         \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{animation}
+         \PY{k+kn}{from} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{animation} \PY{k}{import} \PY{n}{FFMpegWriter}
+         \PY{k+kn}{from} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{animation} \PY{k}{import} \PY{n}{FuncAnimation}
+         
+         
+         
+         \PY{c+c1}{\PYZsh{} call ffmpeg writers: FFMpegWriter(fps=5, codec=None, bitrate=None, extra\PYZus{}args=None, metadata=None)}
+         \PY{c+c1}{\PYZsh{}fps: Framerate for movie.}
+         \PY{c+c1}{\PYZsh{}bitrate: for the saved movie file, which is one way to control the output file size and quality.}
+         \PY{c+c1}{\PYZsh{}Set up formatting for the movie files:}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{animation.ffmpeg\PYZus{}path}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/usr/local/bin/ffmpeg}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{writer} \PY{o}{=} \PY{n}{animation}\PY{o}{.}\PY{n}{writers}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ffmpeg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} 
+         \PY{n}{writer} \PY{o}{=} \PY{n}{writer}\PY{p}{(}\PY{n}{fps}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{,} \PY{n}{bitrate}\PY{o}{=}\PY{l+m+mi}{1800}\PY{p}{)} \PY{c+c1}{\PYZsh{}fps = 15}
+         \PY{c+c1}{\PYZsh{} sizing}
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{}fig: The figure object that contains the information for frames}
+         \PY{n}{fig}\PY{o}{.}\PY{n}{set\PYZus{}size\PYZus{}inches}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{axes}\PY{p}{(}\PY{n}{xlim}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{SIZE}\PY{p}{)}\PY{p}{,} \PY{n}{ylim}\PY{o}{=}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{}SIZE: grid length}
+         
+         \PY{c+c1}{\PYZsh{} scatter plot}
+         \PY{c+c1}{\PYZsh{}adding lines and size of scatter points }
+         \PY{n}{scat} \PY{o}{=} \PY{n}{ax}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{lw}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)} \PY{c+c1}{\PYZsh{}linewidth =0}
+         \PY{c+c1}{\PYZsh{}adding labels: label = (\PYZsq{}line \PYZob{}\PYZcb{}\PYZsq{}.format(i)) inside the scat }
+         \PY{c+c1}{\PYZsh{} or in the for loop init() inside:}
+         
+         \PY{n}{colors\PYZus{}ini} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{NP}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)} \PY{c+c1}{\PYZsh{}np.zeros((rows,cols)) }
+         \PY{c+c1}{\PYZsh{}plt.legend(loc=\PYZsq{}upper left\PYZsq{}, frameon=False)}
+         
+         
+         \PY{c+c1}{\PYZsh{}Update the scatter collection, with the new colors, sizes and positions:}
+         
+         \PY{c+c1}{\PYZsh{}initialization function: plot the background of each frame}
+         \PY{k}{def} \PY{n+nf}{init}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{scat}\PY{o}{.}\PY{n}{set\PYZus{}offsets}\PY{p}{(}\PY{p}{[}\PY{p}{]}\PY{p}{)} 
+         \PY{c+c1}{\PYZsh{}I\PYZsq{}m updating the plot using set\PYZus{}offsets inside the plot function which is called by animation}
+             \PY{k}{return} \PY{n}{scat}
+         
+         \PY{c+c1}{\PYZsh{} define colors for particles}
+         \PY{k}{def} \PY{n+nf}{getColor}\PY{p}{(}\PY{n}{vel}\PY{p}{)}\PY{p}{:}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{vel}\PY{p}{)}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}colors RGB code \PYZsh{}red and blue for 2000 try green and black }
+                 \PY{k}{if} \PY{n}{vel}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{:}
+                     \PY{n}{colors\PYZus{}ini}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n}{colors\PYZus{}ini}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]} \PY{c+c1}{\PYZsh{}0\PYZhy{}0\PYZhy{}0 Black  }
+             \PY{k}{return} \PY{n}{colors\PYZus{}ini}
+         \PY{c+c1}{\PYZsh{} read data files and animate}
+         
+         \PY{c+c1}{\PYZsh{}Last step is to tell matplotlib to use this function (scatter plot) as an update function }
+         \PY{c+c1}{\PYZsh{}for the animation and display the result or save it as a movie:}
+         
+         \PY{k}{def} \PY{n+nf}{animate}\PY{p}{(}\PY{n}{i}\PY{p}{)}\PY{p}{:}
+             
+             \PY{c+c1}{\PYZsh{} location of storage data files}
+             \PY{n}{filename} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/Users/lujainali/Documents/GitHub/Two\PYZus{}Stream\PYZus{}Instability/4000Data/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{step\PYZus{}}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{o}{+} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{.dat}\PY{l+s+s2}{\PYZdq{}}
+             \PY{c+c1}{\PYZsh{}save as .dat a generic data file formate (binary or text)}
+             
+             \PY{c+c1}{\PYZsh{} unpack data into two arrays; one for position and one for velocity }
+             \PY{n}{pos}\PY{p}{,} \PY{n}{vel} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{loadtxt}\PY{p}{(}\PY{n}{filename}\PY{p}{,} \PY{n}{delimiter}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{unpack}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)} \PY{c+c1}{\PYZsh{}np.loadtext: Load data from a text file.}
+             \PY{c+c1}{\PYZsh{}delimiter: the string used to separate values. By default, this is any whitespace.}
+             \PY{c+c1}{\PYZsh{}unpack is bool: If True, the returned array is transposed so that arguments unpacked using x, y, z = loadtxt(...)}
+             
+             
+             
+             \PY{c+c1}{\PYZsh{} copy data to numpy array: load or save all the datafiles in a numpy array}
+             \PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{pos}\PY{p}{,} \PY{n}{vel}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{T}
+             
+             \PY{c+c1}{\PYZsh{} generate colors}
+             \PY{k}{if} \PY{n}{i} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                 \PY{n}{colors} \PY{o}{=} \PY{n}{getColor}\PY{p}{(}\PY{n}{vel}\PY{p}{)}
+             \PY{k}{else}\PY{p}{:}
+                 \PY{n}{colors} \PY{o}{=} \PY{n}{colors\PYZus{}ini}
+             
+             \PY{c+c1}{\PYZsh{} create scatter plot from data and colors}
+             \PY{n}{scat}\PY{o}{.}\PY{n}{set\PYZus{}offsets}\PY{p}{(}\PY{n}{data}\PY{p}{)}
+             \PY{n}{scat}\PY{o}{.}\PY{n}{set\PYZus{}color}\PY{p}{(}\PY{n}{colors}\PY{p}{)}
+             \PY{k}{return} \PY{n}{scat}
+         
+         \PY{c+c1}{\PYZsh{} call the animator.  blit=True means only re\PYZhy{}draw the parts that have changed.}
+         \PY{c+c1}{\PYZsh{}We\PYZsq{}ve chosen a \PYZdq{}STEPS\PYZdq{} or 2000 frame animation with a 1ms delay between frames. }
+         \PY{n}{anim} \PY{o}{=} \PY{n}{animation}\PY{o}{.}\PY{n}{FuncAnimation}\PY{p}{(}\PY{n}{fig}\PY{p}{,} \PY{n}{animate}\PY{p}{,} \PY{n}{init\PYZus{}func}\PY{o}{=}\PY{n}{init}\PY{p}{,}
+                                        \PY{n}{frames}\PY{o}{=}\PY{n}{STEPS}\PY{p}{,} \PY{n}{interval}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} save the animation as an mp4.  This requires ffmpeg installed using Homebrew }
+         
+         \PY{n}{anim}\PY{o}{.}\PY{n}{save}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{/Users/lujainali/Documents/GitHub/Two\PYZus{}Stream\PYZus{}Instability/Animation/}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{STEPS}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ Step}\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.mp4}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{writer}\PY{o}{=}\PY{n}{writer}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} + \PYZsq{}.mp4\PYZsq{}: saves the given file as an mp4 format }
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{animation file is ready}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        KeyboardInterrupt                         Traceback (most recent call last)
+
+        <ipython-input-44-05cb46d2ab4e> in <module>()
+         93 \# save the animation as an mp4.  This requires ffmpeg installed using Homebrew
+         94 
+    ---> 95 anim.save('/Users/lujainali/Documents/GitHub/Two\_Stream\_Instability/Animation/' + str(STEPS) + ' Step' + '.mp4', writer=writer)
+         96 \# + '.mp4': saves the given file as an mp4 format
+         97 print('animation file is ready')
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/animation.py in save(self, filename, writer, fps, dpi, codec, bitrate, extra\_args, metadata, extra\_anim, savefig\_kwargs)
+       1171                     for anim, d in zip(all\_anim, data):
+       1172                         \# TODO: See if turning off blit is really necessary
+    -> 1173                         anim.\_draw\_next\_frame(d, blit=False)
+       1174                     writer.grab\_frame(**savefig\_kwargs)
+       1175 
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/animation.py in \_draw\_next\_frame(self, framedata, blit)
+       1209         self.\_pre\_draw(framedata, blit)
+       1210         self.\_draw\_frame(framedata)
+    -> 1211         self.\_post\_draw(framedata, blit)
+       1212 
+       1213     def \_init\_draw(self):
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/animation.py in \_post\_draw(self, framedata, blit)
+       1234             self.\_blit\_draw(self.\_drawn\_artists, self.\_blit\_cache)
+       1235         else:
+    -> 1236             self.\_fig.canvas.draw\_idle()
+       1237 
+       1238     \# The rest of the code in this class is to facilitate easy blitting
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/backend\_bases.py in draw\_idle(self, *args, **kwargs)
+       1897         if not self.\_is\_idle\_drawing:
+       1898             with self.\_idle\_draw\_cntx():
+    -> 1899                 self.draw(*args, **kwargs)
+       1900 
+       1901     def draw\_cursor(self, event):
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/backends/backend\_agg.py in draw(self)
+        400         toolbar = self.toolbar
+        401         try:
+    --> 402             self.figure.draw(self.renderer)
+        403             \# A GUI class may be need to update a window using this draw, so
+        404             \# don't forget to call the superclass.
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/artist.py in draw\_wrapper(artist, renderer, *args, **kwargs)
+         48                 renderer.start\_filter()
+         49 
+    ---> 50             return draw(artist, renderer, *args, **kwargs)
+         51         finally:
+         52             if artist.get\_agg\_filter() is not None:
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/figure.py in draw(self, renderer)
+       1650 
+       1651             mimage.\_draw\_list\_compositing\_images(
+    -> 1652                 renderer, self, artists, self.suppressComposite)
+       1653 
+       1654             renderer.close\_group('figure')
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/image.py in \_draw\_list\_compositing\_images(renderer, parent, artists, suppress\_composite)
+        136     if not\_composite or not has\_images:
+        137         for a in artists:
+    --> 138             a.draw(renderer)
+        139     else:
+        140         \# Composite any adjacent images together
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/artist.py in draw\_wrapper(artist, renderer, *args, **kwargs)
+         48                 renderer.start\_filter()
+         49 
+    ---> 50             return draw(artist, renderer, *args, **kwargs)
+         51         finally:
+         52             if artist.get\_agg\_filter() is not None:
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/axes/\_base.py in draw(self, renderer, inframe)
+       2602             renderer.stop\_rasterizing()
+       2603 
+    -> 2604         mimage.\_draw\_list\_compositing\_images(renderer, self, artists)
+       2605 
+       2606         renderer.close\_group('axes')
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/image.py in \_draw\_list\_compositing\_images(renderer, parent, artists, suppress\_composite)
+        136     if not\_composite or not has\_images:
+        137         for a in artists:
+    --> 138             a.draw(renderer)
+        139     else:
+        140         \# Composite any adjacent images together
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/artist.py in draw\_wrapper(artist, renderer, *args, **kwargs)
+         48                 renderer.start\_filter()
+         49 
+    ---> 50             return draw(artist, renderer, *args, **kwargs)
+         51         finally:
+         52             if artist.get\_agg\_filter() is not None:
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/axis.py in draw(self, renderer, *args, **kwargs)
+       1188 
+       1189         for tick in ticks\_to\_draw:
+    -> 1190             tick.draw(renderer)
+       1191 
+       1192         \# scale up the axis label box to also find the neighbors, not
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/artist.py in draw\_wrapper(artist, renderer, *args, **kwargs)
+         48                 renderer.start\_filter()
+         49 
+    ---> 50             return draw(artist, renderer, *args, **kwargs)
+         51         finally:
+         52             if artist.get\_agg\_filter() is not None:
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/axis.py in draw(self, renderer)
+        297             self.gridline.draw(renderer)
+        298         if self.tick1On:
+    --> 299             self.tick1line.draw(renderer)
+        300         if self.tick2On:
+        301             self.tick2line.draw(renderer)
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/artist.py in draw\_wrapper(artist, renderer, *args, **kwargs)
+         48                 renderer.start\_filter()
+         49 
+    ---> 50             return draw(artist, renderer, *args, **kwargs)
+         51         finally:
+         52             if artist.get\_agg\_filter() is not None:
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/lines.py in draw(self, renderer)
+        833                 else:
+        834                     \# Don't scale for pixels, and don't stroke them
+    --> 835                     marker\_trans = marker\_trans.scale(w)
+        836                 renderer.draw\_markers(gc, marker\_path, marker\_trans,
+        837                                       subsampled, affine.frozen(),
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/transforms.py in scale(self, sx, sy)
+       2041             [[sx, 0.0, 0.0], [0.0, sy, 0.0], [0.0, 0.0, 1.0]], float)
+       2042         self.\_mtx = np.dot(scale\_mtx, self.\_mtx)
+    -> 2043         self.invalidate()
+       2044         return self
+       2045 
+
+
+        /anaconda3/lib/python3.6/site-packages/matplotlib/transforms.py in invalidate(self)
+        130         if self.is\_affine:
+        131             value = self.INVALID\_AFFINE
+    --> 132         return self.\_invalidate\_internal(value, invalidating\_node=self)
+        133 
+        134     def \_invalidate\_internal(self, value, invalidating\_node):
+
+
+        KeyboardInterrupt: 
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_10_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}Checks: Plot the conservation laws }
+        
+        \PY{c+c1}{\PYZsh{}plt.close() will close the figure window entirely,}
+        \PY{c+c1}{\PYZsh{}where plt.clf() will just clear the figure \PYZhy{} you can still paint another plot onto it.}
+        
+        \PY{c+c1}{\PYZsh{}mass = particles.q/particles.qoverm \PYZsh{}mass = charge/q\PYZus{}over\PYZus{}me  \PYZsh{}  pseudo\PYZhy{}particle mass (need for kinetic energy diagnostic) }
+        
+        \PY{n}{mass} \PY{o}{=}\PY{l+m+mi}{1} 
+        \PY{n}{ukin}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{nsteps}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{upot}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{nsteps}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{utherm}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{nsteps}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{udrift}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{nsteps}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{utot}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{n}{nsteps}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{diagnostics}\PY{p}{(}\PY{p}{)}\PY{p}{:}      
+            \PY{k}{global} \PY{n}{rho}\PY{p}{,}\PY{n}{electric\PYZus{}field}\PY{p}{,}\PY{n}{CELLS}\PY{p}{,}\PY{n}{itime}\PY{p}{,}\PY{n}{SIZE}\PY{p}{,}\PY{n}{AMPLITUDE} \PY{c+c1}{\PYZsh{},rho0}
+            \PY{k}{global} \PY{n}{ukin}\PY{p}{,} \PY{n}{upot}\PY{p}{,} \PY{n}{utot}\PY{p}{,} \PY{n}{emax}
+            \PY{k}{global} \PY{n}{igraph}
+            \PY{n}{xgrid}\PY{o}{=}\PY{n}{dX}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{CELLS}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{k}{if} \PY{p}{(}\PY{n}{itime}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}   \PY{c+c1}{\PYZsh{}itime = 0  initialise time counter}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fields}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{clf}\PY{p}{(}\PY{p}{)}
+            \PY{k}{if} \PY{p}{(}\PY{n}{igraph} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+              \PY{k}{if} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{fmod}\PY{p}{(}\PY{n}{itime}\PY{p}{,}\PY{n}{igraph}\PY{p}{)}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{} plots every igraph steps}
+            \PY{c+c1}{\PYZsh{} Net density}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+                \PY{k}{if} \PY{p}{(}\PY{n}{itime} \PY{o}{\PYZgt{}}\PY{l+m+mi}{0} \PY{p}{)}\PY{p}{:} \PY{n}{plt}\PY{o}{.}\PY{n}{cla}\PY{p}{(}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{xgrid}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{p}{(}\PY{n}{rho}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Density}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{SIZE}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{AMPLITUDE}\PY{p}{,}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{AMPLITUDE}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} Electric field}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+                \PY{k}{if} \PY{p}{(}\PY{n}{itime} \PY{o}{\PYZgt{}}\PY{l+m+mi}{0} \PY{p}{)}\PY{p}{:} \PY{n}{plt}\PY{o}{.}\PY{n}{cla}\PY{p}{(}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{xgrid}\PY{p}{,} \PY{n}{electric\PYZus{}field}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ex}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{AMPLITUDE}\PY{p}{,}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{AMPLITUDE}\PY{p}{)}
+                \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{SIZE}\PY{p}{)}
+        
+                \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+        
+        
+        
+        \PY{c+c1}{\PYZsh{}   total kinetic energy}
+            \PY{n}{v2}\PY{o}{=}\PY{n}{v}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+            \PY{c+c1}{\PYZsh{}vdrift=sum(v)/npart}
+            \PY{n}{ukin}\PY{p}{[}\PY{n}{itime}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{0.5}\PY{o}{*}\PY{n}{mass}\PY{o}{*}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{v2}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{}udrift[itime] = 0.5*mass*vdrift*vdrift*npart  }
+            \PY{c+c1}{\PYZsh{}utherm[itime] = ukin[itime] \PYZhy{} udrift[itime]}
+            
+        \PY{c+c1}{\PYZsh{} potential energy }
+        
+            \PY{n}{e2}\PY{o}{=}\PY{n}{electric\PYZus{}field}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+            \PY{n}{upot}\PY{p}{[}\PY{n}{itime}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{0.5}\PY{o}{*}\PY{n}{dx}\PY{o}{*}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{e2}\PY{p}{)}
+            \PY{n}{emax} \PY{o}{=} \PY{n+nb}{max}\PY{p}{(}\PY{n}{Ex}\PY{p}{)} \PY{c+c1}{\PYZsh{} max field for instability analysis */}
+            
+        \PY{c+c1}{\PYZsh{} total energy}
+            \PY{n}{utot}\PY{p}{[}\PY{n}{itime}\PY{p}{]} \PY{o}{=} \PY{n}{upot}\PY{p}{[}\PY{n}{itime}\PY{p}{]} \PY{o}{+} \PY{n}{ukin}\PY{p}{[}\PY{n}{itime}\PY{p}{]}
+            
+            \PY{k}{return} \PY{k+kc}{True} \PY{c+c1}{\PYZsh{}return utot}
+        
+        \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{}}
+        
+        
+        \PY{k}{def} \PY{n+nf}{histories}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+        
+        \PY{c+c1}{\PYZsh{}FILE *history\PYZus{}file;     /* file for writing out time histories */            }
+        
+          \PY{k}{global} \PY{n}{ukin}\PY{p}{,} \PY{n}{upot}\PY{p}{,} \PY{n}{utot}\PY{p}{,} \PY{n}{udrift}\PY{p}{,} \PY{n}{utherm}
+          \PY{n}{xgrid}\PY{o}{=}\PY{n}{dt}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{n}{nsteps}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}  plt.clf()}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Energies}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}  plt.subplot(2, 2, 1)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{xgrid}\PY{p}{,} \PY{n}{upot}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Upot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{xgrid}\PY{p}{,} \PY{n}{ukin}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ukin}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{xgrid}\PY{p}{,} \PY{n}{utot}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Utot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}  plt.plot(xgrid, udrift, \PYZsq{}g\PYZsq{}, label=\PYZsq{}Udrift\PYZsq{})}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Energy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}  plt.xlim(0,grid\PYZus{}length)}
+        \PY{c+c1}{\PYZsh{}  plt.ylim(\PYZhy{}2*a0,2*a0)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} plt.savefig(\PYZsq{}energies.png\PYZsq{})}
+        
+        \PY{c+c1}{\PYZsh{}   write energies out to file */}
+        \PY{c+c1}{\PYZsh{}  np.savetxt(\PYZsq{}energies.out\PYZsq{}, np.column\PYZus{}stack((xgrid,upot,ukin,utot)),fmt=(\PYZsq{}\PYZpc{}1.4e\PYZsq{},\PYZsq{}\PYZpc{}1.4e\PYZsq{},\PYZsq{}\PYZpc{}1.4e\PYZsq{},\PYZsq{}\PYZpc{}1.4e\PYZsq{}))   \PYZsh{} x,y,z equal sized 1D arrays}
+        \PY{c+c1}{\PYZsh{}  fohist = open(\PYZdq{}energies.data\PYZdq{},\PYZdq{}w\PYZdq{})}
+        \PY{c+c1}{\PYZsh{}  str.format(\PYZdq{}\PYZob{}0:\PYZlt{}10.5f\PYZcb{}\PYZdq{}, 3.14159265)}
+        \PY{c+c1}{\PYZsh{}   if (itime==1) \PYZob{}fprintf(history\PYZus{}file, \PYZdq{} t, U\PYZus{}drift, U\PYZus{}therm, U\PYZus{}field, U\PYZus{}total, Emax\PYZbs{}n\PYZdq{});\PYZcb{}}
+        \PY{c+c1}{\PYZsh{}   fprintf( history\PYZus{}file, \PYZdq{}\PYZpc{}f  \PYZpc{}e \PYZpc{}e  \PYZpc{}e  \PYZpc{}e \PYZpc{}e\PYZbs{}n\PYZdq{}, itime*dt, udrift, utherm, upot, utot, emax );}
+\end{Verbatim}
+
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
